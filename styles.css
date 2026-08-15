@@ -2368,8 +2368,13 @@ a.case-action:hover {
     padding-inline: 0.45rem;
   }
 
-  .cert-featured-tile {
+  #certifications .cert-featured .cert-featured-tile {
     width: calc(50% - 0.2rem);
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "main"
+      "date";
   }
 
   .cert-category-head {
