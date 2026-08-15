@@ -1,0 +1,13 @@
+# Sanity Portfolio Template
+
+A static portfolio template for the `Sanity` personal brand: freelance custom systems/software now, with room for a future game studio.
+
+The visual direction follows the MIT-licensed `bryl-minimal-design` reference in `.reference/bryl-minimal-design` and the public structure of `bryllim.com`: left rail navigation, compact profile intro, stat strip, numbered sections, monochrome cards, halftone texture, and light/dark theming.
+
+## run
+
+Open `index.html` directly in a browser, or serve the folder with any static file server.
+
+```powershell
+python -m http.server 4173
+```

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Custom software, web, and app development services from Sanity.">
+    <title>Sanity - Consulting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=site-11">
+  </head>
+  <body class="video-page">
+    <a class="skip-link" href="#main">skip to content</a>
+    <div class="homepage-video" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="sanityresize.png"><source src="bgvideo.mp4" type="video/mp4"></video></div>
+
+    <header class="mobile-bar" aria-label="mobile navigation">
+      <a class="mobile-brand" href="index.html">Sanity</a>
+      <div class="mobile-actions">
+        <button class="icon-btn theme-toggle" type="button" aria-label="cycle theme"><span class="theme-glyph" aria-hidden="true"></span></button>
+        <button class="icon-btn sound-toggle" type="button" data-sound-toggle aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off"><i data-lucide="volume-2" data-sound-on aria-hidden="true" hidden></i><i data-lucide="volume-x" data-sound-off aria-hidden="true"></i></button>
+        <button class="icon-btn menu-toggle" type="button" aria-label="open menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+      </div>
+    </header>
+
+    <aside class="rail" aria-label="primary navigation">
+      <a class="rail-brand" href="index.html">Sanity</a>
+      <nav class="rail-nav" aria-label="main links"><a href="consulting.html?v=nav-4" aria-current="page"><i class="nav-icon" data-lucide="briefcase-business" aria-hidden="true"></i><span>Consulting</span></a></nav>
+      <nav class="rail-nav rail-nav-secondary" aria-label="service links"><a href="gear.html?v=nav-4"><i class="nav-icon" data-lucide="monitor" aria-hidden="true"></i><span>Gear</span></a></nav>
+      <nav class="rail-nav rail-nav-plain" aria-label="section links">
+        <a href="index.html#projects">Projects</a><a href="index.html#experience">Experience</a><a href="stack.html">Stack</a><a href="certifications.html">Certifications</a><a href="index.html#recommendations">Recommendations</a>
+      </nav>
+      <div class="rail-bottom">
+        <p class="viewer-copy">1 person viewing now</p>
+        <a class="chat-link" href="#contact"><span aria-hidden="true">[]</span><span>get in touch</span></a>
+        <div class="utility-row" aria-label="display controls"><button class="mini-btn theme-toggle" type="button" aria-label="cycle theme"><span class="theme-glyph small" aria-hidden="true"></span></button><button class="mini-btn sound-toggle" type="button" data-sound-toggle aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off"><i data-lucide="volume-2" data-sound-on aria-hidden="true" hidden></i><i data-lucide="volume-x" data-sound-off aria-hidden="true"></i></button></div>
+        <p class="rail-contact-note">For work, projects &amp; everything else, reach me at</p>
+        <a class="rail-email" href="mailto:tabagodarren@gmail.com">tabagodarren@gmail.com</a>
+      </div>
+    </aside>
+
+    <div class="mobile-menu" hidden><nav aria-label="mobile menu"><a href="index.html#projects">Projects</a><a href="index.html#experience">Experience</a><a href="stack.html">Stack</a><a href="#contact">Contact</a></nav></div>
+
+    <main id="main" class="site-main consulting-page">
+      <header class="consulting-hero reveal">
+        <a class="text-link" href="index.html">back to home -></a>
+        <h1>consulting</h1>
+        <p>I build focused software for businesses that need clearer operations, less manual work, and a practical path from idea to launch.</p>
+      </header>
+
+      <section class="service-grid reveal" aria-label="services">
+        <article class="service-case">
+          <span class="card-label">01 - systems</span>
+          <h2>Custom software development</h2>
+          <p>Business systems designed around your actual workflow: operations, inventory, lending, approvals, reporting, and more.</p>
+          <ul><li>Workflow mapping</li><li>Internal tools</li><li>Integrations &amp; automation</li></ul>
+        </article>
+        <article class="service-case">
+          <span class="card-label">02 - web</span>
+          <h2>Web development</h2>
+          <p>Fast, tailored websites and web applications that make your service, product, or internal process easier to use.</p>
+          <ul><li>Web applications</li><li>Client portals</li><li>Dashboards &amp; admin tools</li></ul>
+        </article>
+        <article class="service-case">
+          <span class="card-label">03 - mobile</span>
+          <h2>App development</h2>
+          <p>Useful mobile experiences from an early prototype through a polished release, built for iOS and Android.</p>
+          <ul><li>Cross-platform apps</li><li>App Store delivery</li><li>Product iteration</li></ul>
+        </article>
+      </section>
+
+      <section id="contact" class="consulting-contact reveal" aria-labelledby="consulting-contact-title">
+        <div><span class="card-label">start a conversation</span><h2 id="consulting-contact-title">let's work together</h2><p>Tell me what needs building, what currently gets in the way, and what a better system would make possible.</p></div>
+        <a href="mailto:tabagodarren@gmail.com">tabagodarren@gmail.com -></a>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script src="script.js?v=site-10"></script>
+  </body>
+</html>

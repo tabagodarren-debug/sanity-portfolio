@@ -1,0 +1,5 @@
+.artifacts/
+.reference/
+test-results/
+.server.*.log
+.env
