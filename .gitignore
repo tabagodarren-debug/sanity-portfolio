@@ -3,3 +3,6 @@
 test-results/
 .server.*.log
 .env
+.vercel/
+
+.vercel
