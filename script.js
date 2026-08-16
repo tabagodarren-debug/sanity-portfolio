@@ -302,12 +302,10 @@ document.querySelectorAll('.rail-nav-plain a[href="#projects"], .rail-nav-plain 
   });
 });
 
-window.addEventListener("load", () => {
-  const target = document.querySelector(window.location.hash);
-  if (target?.matches("#projects, #experience")) {
-    window.requestAnimationFrame(() => scrollToReadingPosition(target, "auto"));
-  }
-});
+if (document.body.classList.contains("home-page")) {
+  window.history.scrollRestoration = "manual";
+  window.addEventListener("load", () => window.scrollTo(0, 0), { once: true });
+}
 
 certificateCards.forEach((card) => {
   const isPreview = card.matches("[data-certificate-preview]");
