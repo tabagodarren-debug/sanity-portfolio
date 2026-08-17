@@ -7,6 +7,8 @@ const certificateDialog = document.querySelector("[data-certificate-dialog]");
 const certificateCards = document.querySelectorAll(".cert-pdf-card, [data-certificate-preview]");
 const recommendationDialog = document.querySelector("[data-recommendation-dialog]");
 const recommendationCards = document.querySelectorAll("[data-recommendation-card]");
+const projectDialogTriggers = document.querySelectorAll("[data-project-dialog-trigger]");
+const screenshotDialog = document.querySelector("[data-screenshot-dialog]");
 const githubDotGraph = document.querySelector(".github-dot-graph");
 const githubActivityCount = document.querySelector(".github-activity-count");
 const soundToggleButtons = document.querySelectorAll("[data-sound-toggle]");
@@ -345,6 +347,24 @@ if (certificateDialog) {
 recommendationCards.forEach((card) => {
   card.addEventListener("click", () => {
     if (recommendationDialog?.showModal) {
+      const title = recommendationDialog.querySelector("#recommendation-dialog-title");
+      const role = recommendationDialog.querySelector(".recommendation-dialog-role");
+      const paragraphs = [...card.querySelectorAll("[data-recommendation-full] p")];
+      let copy = recommendationDialog.querySelector(".recommendation-dialog-copy");
+
+      if (!copy) {
+        copy = document.createElement("div");
+        copy.className = "recommendation-dialog-copy";
+        recommendationDialog.querySelector(".recommendation-dialog-bar")?.after(copy);
+      }
+
+      if (title) title.textContent = card.dataset.recommendationName || "Recommendation";
+      if (role) role.textContent = card.dataset.recommendationRole || "";
+      copy?.replaceChildren(...paragraphs.map((paragraph) => {
+        const quote = document.createElement("blockquote");
+        quote.textContent = paragraph.textContent;
+        return quote;
+      }));
       recommendationDialog.showModal();
       playInterfaceSound("bloom");
       recommendationDialog.querySelector(".recommendation-dialog-close")?.focus();
@@ -360,6 +380,113 @@ if (recommendationDialog) {
   recommendationDialog.addEventListener("cancel", (event) => {
     event.preventDefault();
     closeDialogWithAnimation(recommendationDialog);
+  });
+}
+
+projectDialogTriggers.forEach((project) => {
+  const dialog = document.querySelector(`[data-project-dialog="${project.dataset.projectDialogTrigger}"]`);
+
+  const openProjectDialog = () => {
+    if (!dialog?.showModal) return;
+    dialog.showModal();
+    playInterfaceSound("bloom");
+    dialog.querySelector(".project-dialog-close")?.focus();
+  };
+
+  project.addEventListener("click", (event) => {
+    if (event.target.closest("a")) return;
+    openProjectDialog();
+  });
+
+  project.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProjectDialog();
+    }
+  });
+});
+
+document.querySelectorAll("[data-project-dialog]").forEach((dialog) => {
+  dialog.querySelector(".project-dialog-close")?.addEventListener("click", () => closeDialogWithAnimation(dialog));
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) closeDialogWithAnimation(dialog);
+  });
+  dialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeDialogWithAnimation(dialog);
+  });
+});
+
+document.querySelectorAll("[data-project-gallery]").forEach((gallery) => {
+  const dialog = gallery.closest("[data-project-dialog]");
+  const previous = dialog?.querySelector("[data-gallery-prev]");
+  const next = dialog?.querySelector("[data-gallery-next]");
+  const position = dialog?.querySelector("[data-gallery-position]");
+  const items = [...gallery.querySelectorAll("figure")];
+
+  const updateGalleryControls = () => {
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+    const atStart = gallery.scrollLeft <= 2;
+    const atEnd = gallery.scrollLeft >= maxScroll - 2;
+    const firstItem = items[0];
+    const step = firstItem ? firstItem.getBoundingClientRect().width + 14 : 1;
+    const firstVisible = Math.min(items.length - 1, Math.round(gallery.scrollLeft / step));
+    const visibleCount = Math.max(1, Math.floor(gallery.clientWidth / step));
+
+    previous?.toggleAttribute("disabled", atStart);
+    next?.toggleAttribute("disabled", atEnd);
+    if (position) position.textContent = `${String(firstVisible + 1).padStart(2, "0")} - ${String(Math.min(items.length, firstVisible + visibleCount)).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+  };
+
+  previous?.addEventListener("click", () => gallery.scrollBy({ left: -gallery.clientWidth * 0.85, behavior: "smooth" }));
+  next?.addEventListener("click", () => gallery.scrollBy({ left: gallery.clientWidth * 0.85, behavior: "smooth" }));
+  gallery.addEventListener("scroll", updateGalleryControls, { passive: true });
+  window.addEventListener("resize", updateGalleryControls);
+  updateGalleryControls();
+});
+
+document.querySelectorAll("[data-project-gallery] figure").forEach((screen) => {
+  const image = screen.querySelector("img");
+  const caption = screen.querySelector("figcaption")?.textContent?.trim() || "Project screen";
+  if (!image) return;
+
+  screen.tabIndex = 0;
+  screen.setAttribute("role", "button");
+  screen.setAttribute("aria-label", `Open ${caption} screenshot`);
+
+  const openScreenshot = () => {
+    if (!screenshotDialog?.showModal) return;
+    const dialogImage = screenshotDialog.querySelector(".screenshot-dialog-image");
+    const dialogTitle = screenshotDialog.querySelector("#screenshot-dialog-title");
+    const dialogCaption = screenshotDialog.querySelector(".screenshot-dialog-caption");
+    if (!dialogImage || !dialogTitle || !dialogCaption) return;
+
+    dialogImage.src = image.currentSrc || image.src;
+    dialogImage.alt = image.alt;
+    dialogTitle.textContent = caption;
+    dialogCaption.textContent = caption;
+    screenshotDialog.showModal();
+    playInterfaceSound("bloom");
+    screenshotDialog.querySelector(".screenshot-dialog-close")?.focus();
+  };
+
+  screen.addEventListener("click", openScreenshot);
+  screen.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openScreenshot();
+    }
+  });
+});
+
+if (screenshotDialog) {
+  screenshotDialog.querySelector(".screenshot-dialog-close")?.addEventListener("click", () => closeDialogWithAnimation(screenshotDialog));
+  screenshotDialog.addEventListener("click", (event) => {
+    if (event.target === screenshotDialog) closeDialogWithAnimation(screenshotDialog);
+  });
+  screenshotDialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeDialogWithAnimation(screenshotDialog);
   });
 }
 

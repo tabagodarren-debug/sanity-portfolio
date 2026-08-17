@@ -785,6 +785,15 @@ kbd {
   transform: translateX(2px);
 }
 
+.project-case-interactive {
+  cursor: pointer;
+}
+
+.project-case-interactive:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
 .case-number,
 .case-action {
   color: var(--faint);
@@ -1985,10 +1994,339 @@ a.case-action:hover {
   line-height: 1.65;
 }
 
+.recommendation-dialog > blockquote { display: none; }
+
 .recommendation-dialog-close:hover,
 .recommendation-dialog-close:focus-visible {
   border-color: var(--ink);
 }
+
+.project-dialog {
+  width: min(94vw, 80rem);
+  max-height: min(92dvh, 58rem);
+  overflow: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 32px 90px -20px rgb(0 0 0 / 70%);
+  padding: 1rem;
+}
+
+.project-dialog[open] { animation: certificate-dialog-in 220ms var(--ease) both; }
+.project-dialog.is-closing { animation: certificate-dialog-out 180ms ease-in both; }
+
+.project-dialog::backdrop {
+  background: rgb(0 0 0 / 68%);
+  backdrop-filter: blur(8px);
+}
+
+.project-dialog[open]::backdrop { animation: certificate-backdrop-in 180ms ease-out both; }
+.project-dialog.is-closing::backdrop { animation: certificate-backdrop-out 180ms ease-in both; }
+
+.project-dialog-bar,
+.project-dialog-hero,
+.project-dialog-meta,
+.project-dialog-details { border-bottom: 1px solid var(--line); }
+
+.project-dialog-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+}
+
+.project-dialog-bar p,
+.project-dialog-kicker,
+.project-dialog-meta dt,
+.project-dialog-meta dd,
+.project-dialog-gallery figcaption,
+.project-dialog-store {
+  margin: 0;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.project-dialog-bar p,
+.project-dialog-kicker,
+.project-dialog-meta dt,
+.project-dialog-gallery figcaption { color: var(--muted); }
+
+.project-dialog-close {
+  min-width: 3.5rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.project-dialog-close:hover,
+.project-dialog-close:focus-visible { border-color: var(--ink); }
+
+.project-dialog-hero {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr) max-content;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.35rem 0;
+}
+
+.project-dialog-icon {
+  width: 5.5rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.project-dialog-hero h2 {
+  max-width: 38rem;
+  margin: 0.3rem 0 0;
+  font-size: clamp(1.25rem, 2.3vw, 2rem);
+  line-height: 1.25;
+}
+
+.project-dialog-hero p:not(.project-dialog-kicker) {
+  max-width: 43rem;
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+}
+
+.project-dialog-store {
+  align-self: end;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 0.7rem 0.8rem;
+  color: var(--ink);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.project-dialog-store:hover {
+  border-color: var(--ink);
+  transform: translate(1px, -1px);
+}
+
+.project-dialog-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.project-dialog-meta div {
+  display: grid;
+  gap: 0.35rem;
+  min-height: 4.6rem;
+  align-content: center;
+  border-right: 1px solid var(--line);
+  padding: 0.8rem 1rem;
+}
+
+.project-dialog-meta div:first-child { padding-left: 0; }
+.project-dialog-meta div:last-child { border-right: 0; }
+.project-dialog-meta dd { color: var(--ink); }
+
+.project-dialog-gallery-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.project-dialog-gallery-head > p {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.project-dialog-gallery-head > p span { color: var(--ink); }
+
+.project-gallery-controls {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.project-gallery-controls button {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  cursor: pointer;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  transition: transform 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+
+.project-gallery-controls button:hover:not(:disabled) {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.project-gallery-controls button:disabled {
+  cursor: default;
+  opacity: 0.38;
+}
+
+.project-gallery-controls svg { width: 1rem; height: 1rem; }
+
+.project-dialog-gallery {
+  display: grid;
+  grid-auto-columns: minmax(10rem, 13.5rem);
+  grid-auto-flow: column;
+  gap: 0.85rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding: 1.25rem 0;
+}
+
+.project-dialog-gallery figure {
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.project-dialog-gallery figure[role="button"] {
+  cursor: zoom-in;
+  outline: 0;
+}
+
+.project-dialog-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1320 / 2868;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: #7130b4;
+  object-fit: cover;
+  transition: transform 180ms var(--ease), border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.project-dialog-gallery figure[role="button"]:hover img,
+.project-dialog-gallery figure[role="button"]:focus-visible img {
+  border-color: var(--ink);
+  box-shadow: 0 12px 24px -16px rgb(0 0 0 / 82%);
+  transform: translateY(-4px);
+}
+
+.project-dialog-gallery figure[role="button"]:hover figcaption,
+.project-dialog-gallery figure[role="button"]:focus-visible figcaption { color: var(--ink); }
+
+.project-dialog-gallery--landscape {
+  grid-auto-columns: minmax(20rem, 38rem);
+}
+
+.project-dialog-gallery--landscape img {
+  aspect-ratio: 1440 / 950;
+  background: #f5f5f5;
+  object-fit: cover;
+}
+
+.project-dialog-gallery figcaption { margin-top: 0.55rem; }
+
+.project-dialog-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.project-dialog-details div {
+  padding: 1rem;
+  border-right: 1px solid var(--line);
+}
+
+.project-dialog-details div:first-child { padding-left: 0; }
+.project-dialog-details div:last-child { border-right: 0; }
+.project-dialog-details strong { font-size: 0.8rem; }
+.project-dialog-details p { margin: 0.45rem 0 0; color: var(--muted); font-size: 0.8rem; }
+
+.screenshot-dialog {
+  width: min(96vw, 92rem);
+  max-height: min(94dvh, 66rem);
+  overflow: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 32px 90px -20px rgb(0 0 0 / 72%);
+  padding: 1rem;
+}
+
+.screenshot-dialog[open] { animation: certificate-dialog-in 220ms var(--ease) both; }
+.screenshot-dialog.is-closing { animation: certificate-dialog-out 180ms ease-in both; }
+
+.screenshot-dialog::backdrop {
+  background: rgb(0 0 0 / 76%);
+  backdrop-filter: blur(10px);
+}
+
+.screenshot-dialog[open]::backdrop { animation: certificate-backdrop-in 180ms ease-out both; }
+.screenshot-dialog.is-closing::backdrop { animation: certificate-backdrop-out 180ms ease-in both; }
+
+.screenshot-dialog-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.screenshot-dialog-bar p,
+.screenshot-dialog-caption {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.screenshot-dialog-bar h2 {
+  margin: 0.3rem 0 0;
+  font-size: 1rem;
+}
+
+.screenshot-dialog-close {
+  min-width: 3.5rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.screenshot-dialog-close:hover,
+.screenshot-dialog-close:focus-visible { border-color: var(--ink); }
+
+.screenshot-dialog-figure {
+  display: grid;
+  margin: 1rem 0 0;
+  place-items: center;
+}
+
+.screenshot-dialog-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(94dvh - 9rem);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: transparent;
+  object-fit: contain;
+}
+
+.screenshot-dialog-caption { margin-top: 0.65rem; }
 
 .lower-card {
   border: 1px solid var(--line);
@@ -2437,6 +2775,45 @@ a.case-action:hover {
     justify-content: start;
   }
 
+  .project-dialog {
+    width: calc(100vw - 1rem);
+    max-height: calc(100dvh - 1rem);
+    padding: 0.75rem;
+  }
+
+  .project-dialog-hero {
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
+  .project-dialog-icon { width: 4rem; }
+
+  .project-dialog-store {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .project-dialog-meta { grid-template-columns: repeat(2, 1fr); }
+  .project-dialog-meta div:nth-child(2) { border-right: 0; }
+  .project-dialog-meta div:nth-child(3),
+  .project-dialog-meta div:nth-child(4) { border-top: 1px solid var(--line); }
+  .project-dialog-meta div:nth-child(3) { padding-left: 0; }
+  .project-dialog-gallery { grid-auto-columns: minmax(9.25rem, 44vw); }
+  .project-dialog-gallery--landscape { grid-auto-columns: minmax(17rem, 82vw); }
+  .project-dialog-gallery-head { padding-top: 0.85rem; }
+  .screenshot-dialog { width: min(96vw, 44rem); padding: 0.75rem; }
+  .screenshot-dialog-image { max-height: calc(94dvh - 8rem); }
+  .project-dialog-details { grid-template-columns: 1fr; }
+
+  .project-dialog-details div,
+  .project-dialog-details div:first-child {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 0.9rem 0;
+  }
+
+  .project-dialog-details div:last-child { border-bottom: 0; }
+
   .timeline article {
     grid-template-columns: 3.6rem minmax(0, 1fr);
   }
@@ -2447,6 +2824,13 @@ a.case-action:hover {
   .certificate-dialog[open]::backdrop,
   .recommendation-dialog[open],
   .recommendation-dialog[open]::backdrop {
+    animation: none;
+  }
+
+  .project-dialog[open],
+  .project-dialog[open]::backdrop,
+  .screenshot-dialog[open],
+  .screenshot-dialog[open]::backdrop {
     animation: none;
   }
 

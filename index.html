@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=site-17">
+    <link rel="stylesheet" href="styles.css?v=site-21">
   </head>
   <body class="home-page">
     <a class="skip-link" href="#main">skip to content</a>
@@ -162,7 +162,7 @@
           <a href="#projects">all projects -></a>
         </div>
         <div class="project-index" aria-label="Selected projects">
-          <article class="project-case">
+          <article class="project-case project-case-interactive" data-project-dialog-trigger="pip" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Pip project details">
             <div class="case-number">01</div>
             <div class="app-icon image-icon full-icon">
               <img src="projecticons/pipicon.png" alt="Pip app icon">
@@ -179,7 +179,7 @@
             <a class="case-action" href="https://apps.apple.com/ph/app/pip-symptom-health-tracker/id6773211681" target="_blank" rel="noreferrer">app store -></a>
           </article>
 
-          <article class="project-case">
+          <article class="project-case project-case-interactive" data-project-dialog-trigger="mj-prime" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open MJ Prime project details">
             <div class="case-number">02</div>
             <div class="app-icon image-icon dark-icon full-icon">
               <img src="projecticons/mjlogodarkmode.png" alt="MJ Lending System logo">
@@ -545,11 +545,25 @@
           <a href="#">all recommendations -></a>
         </div>
         <div class="quote-grid">
-          <button class="recommendation-card" type="button" data-recommendation-card aria-haspopup="dialog" aria-label="Read the full recommendation from Denver H.">
+          <button class="recommendation-card" type="button" data-recommendation-card data-recommendation-name="Denver H." data-recommendation-role="President, MJ Prime Financial Lending Corporation" aria-haspopup="dialog" aria-label="Read the full recommendation from Denver H.">
             <span class="recommendation-mark" aria-hidden="true">&ldquo;</span>
             <blockquote>Thank you very much for the well-built lending system you developed for us. We appreciate how simple, intuitive, and practical it is for our daily operations.</blockquote>
             <span class="recommendation-person"><span class="recommendation-initials" aria-hidden="true">DH</span><span><strong>Denver H.</strong><small>President, MJ Prime Financial Lending Corporation</small></span></span>
+            <div data-recommendation-full hidden>
+              <p>Thank you very much for the well-built lending system you developed for us. We appreciate how simple, intuitive, and practical it is for our daily operations.</p>
+              <p>Features such as DTR and cashiering have made our monitoring and transactions much more organized and convenient.</p>
+              <p>Overall, we are very satisfied with both the system and your service. You were easy to communicate with, responsive, and delivered a system that our team can use with confidence. Highly recommended!</p>
+            </div>
+          </button>
+          <button class="recommendation-card" type="button" data-recommendation-card data-recommendation-name="Joseph L." data-recommendation-role="Founder, Glaive Entertainment" aria-haspopup="dialog" aria-label="Read the full recommendation from Joseph L.">
+            <span class="recommendation-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote>Darren is very ambitious with his ideas and he is very fun to work with. I admire his work ethic in regards to daily tasks and productivity when working on a project together.</blockquote>
+            <span class="recommendation-person"><span class="recommendation-initials" aria-hidden="true">JL</span><span><strong>Joseph L.</strong><small>Founder, Glaive Entertainment</small></span></span>
             <span class="recommendation-more">read full recommendation -></span>
+            <div data-recommendation-full hidden>
+              <p>Darren is very ambitious with his ideas and he is very fun to work with. I admire his work ethic in regards to daily tasks and productivity when working on a project together.</p>
+              <p>Despite his ideas seemingly looking a bit ambitious at first, he delivers.</p>
+            </div>
           </button>
         </div>
       </section>
@@ -592,8 +606,8 @@
       <div class="recommendation-dialog-bar">
         <div>
           <p class="recommendation-dialog-label">Client recommendation</p>
-          <h2 id="recommendation-dialog-title">Denver H.</h2>
-          <p class="recommendation-dialog-role">President, MJ Prime Financial Lending Corporation</p>
+          <h2 id="recommendation-dialog-title"></h2>
+          <p class="recommendation-dialog-role"></p>
         </div>
         <button class="recommendation-dialog-close" type="button">close</button>
       </div>
@@ -602,7 +616,115 @@
       <blockquote>Overall, we are very satisfied with both the system and your service. You were easy to communicate with, responsive, and delivered a system that our team can use with confidence. Highly recommended!”</blockquote>
     </dialog>
 
+    <dialog class="project-dialog" data-project-dialog="pip" aria-labelledby="project-dialog-title">
+      <div class="project-dialog-bar">
+        <p>01 - released iOS app</p>
+        <button class="project-dialog-close" type="button" aria-label="close Pip project details">close</button>
+      </div>
+
+      <section class="project-dialog-hero">
+        <img class="project-dialog-icon" src="projecticons/pipicon.png" alt="Pip app icon">
+        <div>
+          <p class="project-dialog-kicker">Pip - Symptom &amp; Health Tracker</p>
+          <h2 id="project-dialog-title">A calm daily health record, ready when it matters.</h2>
+          <p>Track symptoms, mood, sleep, energy, and more in seconds. Pip turns daily logs into clear trends and a doctor-ready history for your next appointment.</p>
+        </div>
+        <a class="project-dialog-store" href="https://apps.apple.com/ph/app/pip-symptom-health-tracker/id6773211681" target="_blank" rel="noreferrer">view on App Store <span aria-hidden="true">-&gt;</span></a>
+      </section>
+
+      <dl class="project-dialog-meta">
+        <div><dt>platform</dt><dd>iPhone</dd></div>
+        <div><dt>status</dt><dd>released</dd></div>
+        <div><dt>pricing</dt><dd>free + Pip+</dd></div>
+        <div><dt>focus</dt><dd>health &amp; fitness</dd></div>
+      </dl>
+
+      <div class="project-dialog-gallery-head">
+        <p>app screens <span data-gallery-position>01 - 04 / 08</span></p>
+        <div class="project-gallery-controls" aria-label="Pip screenshot controls">
+          <button type="button" data-gallery-prev aria-label="Previous screenshots" title="Previous screenshots"><i data-lucide="arrow-left" aria-hidden="true"></i></button>
+          <button type="button" data-gallery-next aria-label="Next screenshots" title="Next screenshots"><i data-lucide="arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <section class="project-dialog-gallery" data-project-gallery aria-label="Pip app screenshots">
+        <figure><img src="assets/pip-screenshots/pip-1.png" alt="Pip dashboard screenshot"><figcaption>Daily dashboard</figcaption></figure>
+        <figure><img src="assets/pip-screenshots/pip-2.png" alt="Pip fatigue log screenshot"><figcaption>Quick symptom logging</figcaption></figure>
+        <figure><img src="assets/pip-screenshots/pip-3.png" alt="Pip quick log screenshot"><figcaption>One-flow quick log</figcaption></figure>
+        <figure><img src="assets/pip-screenshots/pip-4.png" alt="Pip custom tracker screenshot"><figcaption>Custom trackers</figcaption></figure>
+        <figure><img src="assets/pip-screenshots/pip-5.png" alt="Pip history screenshot"><figcaption>Daily history</figcaption></figure>
+        <figure><img src="assets/pip-screenshots/pip-6.png" alt="Pip AI insights screenshot"><figcaption>AI insights</figcaption></figure>
+        <figure><img src="assets/pip-screenshots/pip-7.png" alt="Pip trend charts screenshot"><figcaption>Seven-day trends</figcaption></figure>
+        <figure><img src="assets/pip-screenshots/pip-8.png" alt="Pip health report screenshot"><figcaption>Shareable health report</figcaption></figure>
+      </section>
+
+      <section class="project-dialog-details" aria-label="Pip capabilities">
+        <div><strong>Log without friction</strong><p>Built-in or custom trackers, a one-tap log flow, and optional notes keep the daily habit light.</p></div>
+        <div><strong>See the pattern</strong><p>Trend charts make it easier to spot what is improving, what is changing, and what needs attention.</p></div>
+        <div><strong>Bring context to care</strong><p>Pip+ adds AI observations and an exportable symptom history for more useful appointments.</p></div>
+      </section>
+    </dialog>
+
+    <dialog class="project-dialog project-dialog--system" data-project-dialog="mj-prime" aria-labelledby="mj-prime-dialog-title">
+      <div class="project-dialog-bar">
+        <p>02 - private client system</p>
+        <button class="project-dialog-close" type="button" aria-label="close MJ Prime project details">close</button>
+      </div>
+
+      <section class="project-dialog-hero">
+        <img class="project-dialog-icon" src="projecticons/mjlogodarkmode.png" alt="MJ Prime logo">
+        <div>
+          <p class="project-dialog-kicker">MJ Prime Operations System</p>
+          <h2 id="mj-prime-dialog-title">A complete operating desk for lending teams.</h2>
+          <p>A custom lending operations platform that brings loan releases, collections, payments, cashiering, reporting, and attendance into one practical system.</p>
+        </div>
+        <span class="project-dialog-store" aria-label="Private client build">private client build</span>
+      </section>
+
+      <dl class="project-dialog-meta">
+        <div><dt>platform</dt><dd>web system</dd></div>
+        <div><dt>status</dt><dd>client build</dd></div>
+        <div><dt>focus</dt><dd>lending operations</dd></div>
+        <div><dt>access</dt><dd>private</dd></div>
+      </dl>
+
+      <div class="project-dialog-gallery-head">
+        <p>product screens <span data-gallery-position>01 - 02 / 06</span></p>
+        <div class="project-gallery-controls" aria-label="MJ Prime screenshot controls">
+          <button type="button" data-gallery-prev aria-label="Previous screenshots" title="Previous screenshots"><i data-lucide="arrow-left" aria-hidden="true"></i></button>
+          <button type="button" data-gallery-next aria-label="Next screenshots" title="Next screenshots"><i data-lucide="arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <section class="project-dialog-gallery project-dialog-gallery--landscape" data-project-gallery aria-label="MJ Prime system screenshots">
+        <figure><img src="assets/mj-prime-screenshots/dashboard.png" alt="MJ Prime lending operations dashboard"><figcaption>Operations dashboard</figcaption></figure>
+        <figure><img src="assets/mj-prime-screenshots/new-loan.png" alt="MJ Prime new loan workflow"><figcaption>Loan creation</figcaption></figure>
+        <figure><img src="assets/mj-prime-screenshots/collections.png" alt="MJ Prime collections screen"><figcaption>Collections management</figcaption></figure>
+        <figure><img src="assets/mj-prime-screenshots/cashiering.png" alt="MJ Prime cashiering dashboard"><figcaption>Cashiering controls</figcaption></figure>
+        <figure><img src="assets/mj-prime-screenshots/dtr-station.png" alt="MJ Prime DTR station"><figcaption>DTR station</figcaption></figure>
+        <figure><img src="assets/mj-prime-screenshots/reports.png" alt="MJ Prime reports screen"><figcaption>Reporting</figcaption></figure>
+      </section>
+
+      <section class="project-dialog-details" aria-label="MJ Prime capabilities">
+        <div><strong>Loan lifecycle</strong><p>Create and manage lending records from release through amortization, collections, and account history.</p></div>
+        <div><strong>Clear financial control</strong><p>Cashiering tools centralize daily movement, manual entries, and operational tracking.</p></div>
+        <div><strong>Built for the team</strong><p>DTR, reports, and company settings support the day-to-day work around the core lending workflow.</p></div>
+      </section>
+    </dialog>
+
+    <dialog class="screenshot-dialog" data-screenshot-dialog aria-labelledby="screenshot-dialog-title">
+      <div class="screenshot-dialog-bar">
+        <div>
+          <p>screenshot preview</p>
+          <h2 id="screenshot-dialog-title">Project screen</h2>
+        </div>
+        <button class="screenshot-dialog-close" type="button" aria-label="close screenshot preview">close</button>
+      </div>
+      <figure class="screenshot-dialog-figure">
+        <img class="screenshot-dialog-image" src="" alt="">
+        <figcaption class="screenshot-dialog-caption"></figcaption>
+      </figure>
+    </dialog>
+
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script src="script.js?v=site-15"></script>
+    <script src="script.js?v=site-20"></script>
   </body>
 </html>

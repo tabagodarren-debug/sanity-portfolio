@@ -11,3 +11,12 @@ Open `index.html` directly in a browser, or serve the folder with any static fil
 ```powershell
 python -m http.server 4173
 ```
+
+## deployment
+
+The portfolio works on Vercel and Cloudflare Pages. The live GitHub contribution graph uses the same `/api/github-contributions` URL on both platforms.
+
+- Vercel uses `api/github-contributions.js`.
+- Cloudflare Pages uses `functions/api/github-contributions.js`.
+
+Set `GITHUB_TOKEN` as an encrypted production environment variable in your hosting dashboard. Use a GitHub personal access token with `read:user`; keep it out of Git. Without the token, the site uses its built-in graph fallback.
