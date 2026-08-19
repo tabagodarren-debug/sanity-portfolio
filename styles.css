@@ -1154,6 +1154,20 @@ a.case-action:hover {
   object-fit: cover;
 }
 
+.cert-badge-image {
+  display: block;
+  width: 2.4rem;
+  height: 2.4rem;
+  object-fit: contain;
+  margin-top: -2.1rem;
+  margin-left: 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f3f3f3;
+  padding: 0.16rem;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.22);
+}
+
 .cert-featured-tile .cert-main strong {
   font-size: 0.78rem;
 }
